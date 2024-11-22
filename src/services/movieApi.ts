@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {Movie, MovieListResponse} from '../types/movie';
+import { Movie, MovieListResponse } from '../types/movie';
 
 const API_KEY = 'ae87bf715caac8fd6efd5cc889db56b0';
 const BASE_URL = 'https://api.themoviedb.org/3';
-export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
 const movieApi = axios.create({
   baseURL: BASE_URL,
@@ -12,6 +12,7 @@ const movieApi = axios.create({
   },
 });
 
+export const getImageUrl = (path: string) => `${BASE_IMAGE_URL}${path}`;
 export const getPopularMovies = async (
   page = 1,
 ): Promise<MovieListResponse> => {
