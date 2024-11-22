@@ -3,11 +3,12 @@ export interface Movie {
   title: string;
   overview: string;
   poster_path: string;
-  release_date: string;
   vote_average: number;
+  release_date: string;
+  vote_count: number;
 }
 
-export interface MovieResponse {
+export interface MovieListResponse {
   page: number;
   results: Movie[];
   total_pages: number;

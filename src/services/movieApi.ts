@@ -1,8 +1,9 @@
 import axios from 'axios';
-import {MovieResponse} from '../types/movie';
+import {Movie, MovieListResponse} from '../types/movie';
 
 const API_KEY = 'ae87bf715caac8fd6efd5cc889db56b0';
 const BASE_URL = 'https://api.themoviedb.org/3';
+export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 const movieApi = axios.create({
   baseURL: BASE_URL,
@@ -11,9 +12,23 @@ const movieApi = axios.create({
   },
 });
 
-export const getPopularMovies = async (page = 1): Promise<MovieResponse> => {
-  const response = await movieApi.get<MovieResponse>('/movie/popular', {
+export const getPopularMovies = async (
+  page = 1,
+): Promise<MovieListResponse> => {
+  const response = await movieApi.get<MovieListResponse>('/movie/popular', {
     params: {page},
   });
   return response.data;
+};
+
+export const searchMovies = async (query: string): Promise<Movie[]> => {
+  try {
+    const response = await movieApi.get<MovieListResponse>('/search/movie', {
+      params: {query: encodeURIComponent(query)},
+    });
+    return response.data.results.slice(0, 10);
+  } catch (error) {
+    console.error('Error searching movies:', error);
+    return [];
+  }
 };
