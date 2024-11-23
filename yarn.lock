@@ -1534,6 +1534,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@d11/react-native-fast-image@npm:^8.8.1":
+  version: 8.8.1
+  resolution: "@d11/react-native-fast-image@npm:8.8.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: e2fed0345f174e79004004dde1cd08895bf3b9b34a5f0e8d97137fb1617aa6d671f3447def7495756a961665cbd70ed0e2fdc5dc08d6e4c62fcbe74a847f5f05
+  languageName: node
+  linkType: hard
+
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
@@ -2978,6 +2988,7 @@ __metadata:
     "@babel/core": ^7.25.2
     "@babel/preset-env": ^7.25.3
     "@babel/runtime": ^7.25.0
+    "@d11/react-native-fast-image": ^8.8.1
     "@react-native-community/blur": ^4.4.1
     "@react-native-community/cli": 15.0.1
     "@react-native-community/cli-platform-android": 15.0.1
