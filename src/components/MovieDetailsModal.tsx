@@ -1,8 +1,8 @@
+import FastImage from '@d11/react-native-fast-image';
 import {BlurView} from '@react-native-community/blur';
 import React from 'react';
 import {
   Dimensions,
-  Image,
   Modal,
   StyleSheet,
   Text,
@@ -90,11 +90,14 @@ const MovieDetailsModal = ({
 
         <PanGestureHandler onGestureEvent={handleGestureEvent}>
           <Animated.View style={[styles.modalContainer, modalStyle]}>
-            <Image
-              source={{uri: getImageUrl(movie.poster_path)}}
+            <FastImage
               style={styles.posterImage}
+              source={{
+                uri: getImageUrl(movie.poster_path),
+                priority: FastImage.priority.normal,
+              }}
+              resizeMode={FastImage.resizeMode.contain}
             />
-
             <View style={styles.content}>
               <Text style={styles.title}>{movie.title}</Text>
               <Text style={styles.year}>
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: colors.shadow + '40',
   },
   blur: {
     ...StyleSheet.absoluteFillObject,
@@ -138,14 +141,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 24,
     minHeight: SCREEN_HEIGHT * 0.75,
     paddingBottom: 40,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: -2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
   closeButton: {
     position: 'absolute',
@@ -156,7 +151,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: colors.background + '40',
     borderRadius: 20,
     zIndex: 999,
   },
@@ -168,14 +163,12 @@ const styles = StyleSheet.create({
   posterImage: {
     width: SCREEN_WIDTH,
     height: SCREEN_WIDTH * 1.5,
-    marginTop: -80,
   },
   content: {
     padding: 24,
     marginTop: -60,
     backgroundColor: colors.background,
     borderRadius: 12,
-    elevation: 5,
   },
   title: {
     fontSize: 24,
@@ -201,17 +194,9 @@ const styles = StyleSheet.create({
   },
   statItem: {
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: colors.shadow + '10',
     padding: 10,
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
   },
   statValue: {
     fontSize: 20,

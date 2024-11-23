@@ -1,5 +1,6 @@
+import FastImage from '@d11/react-native-fast-image';
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors} from '../config/colors';
 import {getImageUrl} from '../services/movieApi';
 import {Movie} from '../types/movie';
@@ -24,9 +25,13 @@ const SearchPreview = ({movie, onSelect}: SearchPreviewProps) => {
         style={styles.container}
         onPress={handlePress}
         activeOpacity={0.7}>
-        <Image
-          source={{uri: getImageUrl(movie.poster_path)}}
+        <FastImage
           style={styles.image}
+          source={{
+            uri: getImageUrl(movie.poster_path),
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.contain}
         />
         <View style={styles.textContainer}>
           <Text style={styles.title}>{movie.title}</Text>
